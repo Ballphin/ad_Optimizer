@@ -235,3 +235,41 @@ python3 tools/yt_transcripts.py video $(grep -oE '\[[A-Za-z0-9_-]{11}\]' knowled
 | [I1JOCsYbiXU](https://youtu.be/I1JOCsYbiXU) | 온라인 사업 전략, 온크트리 | 2865 | 쇼핑몰 마진의 현실, 돈이 안 모인다면 꼭 보세요. |
 | [Cdt4GlKnoT8](https://youtu.be/Cdt4GlKnoT8) | 돈버는형님들 | 20488 | 복잡한 쇼핑몰 마진 30초 만에 계산하는 법 / 마진계산기 무료로 드립니다 |
 | [2MXU3-Hio7s](https://youtu.be/2MXU3-Hio7s) | 셀러마진뷰 by 현서 | 100 | 쿠팡 대시보드 / 마진 광고비 매출 순이익 계산 (템플릿 제공) |
+
+## 2026-11-22 추가 검색 (쿠팡/네이버 광고 2026 최신, 적자 탈출)
+
+| ID | 채널 | 제목 |
+|---|---|---|
+| [8GQfoYV_xVw](https://youtu.be/8GQfoYV_xVw) | 트라이억 | 2026 최신 쿠팡 광고 세팅 |
+| [1sESZC1FSe8](https://youtu.be/1sESZC1FSe8) | 호랑이커머스 | 쿠팡 광고 전부 알려드릴게요 26년 최신판 |
+| [b-ZV8sVNkAg](https://youtu.be/b-ZV8sVNkAg) | 머니부스트 | 쿠팡 광고 세팅 완전 가이드 (2026) |
+| [dT0B0bSp9HY](https://youtu.be/dT0B0bSp9HY) | 캡틴쿠팡 | 쿠팡 광고 전략 |
+| [bqzycXKVAMs](https://youtu.be/bqzycXKVAMs) | 셀러로그 | 쿠팡 신규 상품 광고 완벽 세팅법 2026 |
+| [IPx51akkNaM](https://youtu.be/IPx51akkNaM) | 쿠팡 광고 교실 | 매출 최적화 광고 등록방법 |
+| [RxUJaK7Yd3I](https://youtu.be/RxUJaK7Yd3I) | 한부장의 돈버는쿠팡 | 260904 초보 광고 2 |
+| [USHJBYjvH9g](https://youtu.be/USHJBYjvH9g) | 돈버는하마 | 모르고 쿠팡 광고 시작하면 적자납니다 |
+| [BSDxelji0yk](https://youtu.be/BSDxelji0yk) | 돈벌자옹 | 쿠팡 광고 세팅 이게 전부 |
+| [M2-j9wuk8ko](https://youtu.be/M2-j9wuk8ko) | 돈벌자옹 | 쿠팡 광고 이렇게 세팅 |
+| [ZHh4-gFzNFo](https://youtu.be/ZHh4-gFzNFo) | 돈벌자옹 | 매출 상승 쿠팡 광고 세팅 |
+| [TZbh5iqJ0Sk](https://youtu.be/TZbh5iqJ0Sk) | 쿠썸 | 쿠팡 광고 '학습 중' 뜨면 절대 끄지 마세요 |
+| [fgs0OPrS2L8](https://youtu.be/fgs0OPrS2L8) | 쿠썸 | 쿠팡 광고 효율 200% 3가지 핵심 전략 |
+| [evM_HAUrO1E](https://youtu.be/evM_HAUrO1E) | 한드래곤 | 쿠팡 매출최적화 광고 세팅~보고서 분석 |
+| [ksBulPN94KM](https://youtu.be/ksBulPN94KM) | 빌리브로 | 쿠팡 광고가 안 되는 진짜 이유 |
+| [-ICQYJd0P0w](https://youtu.be/-ICQYJd0P0w) | 빌리브로 | 상위 1%의 ROAS 전략 |
+| [Pb_wwIoBFT4](https://youtu.be/Pb_wwIoBFT4) | 쿠팡멘토 | 아직도 ROAS 350% 설정? |
+| [G_HpcZVJ0zc](https://youtu.be/G_HpcZVJ0zc) | 돈버는하마 | 쿠팡 광고 공식 |
+| [BC-JURTJBfU](https://youtu.be/BC-JURTJBfU) | 돈버는하마 | 쿠팡 광고 공식 공개 |
+| [BdOXCC7ktOM](https://youtu.be/BdOXCC7ktOM) | 돈버는하마 | 쿠팡 썸네일 바뀐 광고정책 |
+| [iuRUmPXOGwM](https://youtu.be/iuRUmPXOGwM) | 셀러Jay | 로켓그로스 광고 왜 적자일까 |
+| [qL-4Z_VwkVI](https://youtu.be/qL-4Z_VwkVI) | 스월백 | 실제로 돈 버는 쿠팡 광고 전략 |
+| [OJAyWYCIWyU](https://youtu.be/OJAyWYCIWyU) | 14년셀러 든든 | 쿠팡 유료 강의 스킬 공개 |
+| [cx7dzMMnczA](https://youtu.be/cx7dzMMnczA) | 어떤피디 | 네이버 쇼핑검색광고 2026 최신 세팅법 |
+| [_JAOFYeRscw](https://youtu.be/_JAOFYeRscw) | 셀레버리지 | 네이버 쇼핑검색광고 2026 / 애드부스트 자격 |
+| [Cy1ugmWvn5Q](https://youtu.be/Cy1ugmWvn5Q) | 14년셀러 든든 | 14년차 셀러의 네이버 쇼핑광고 세팅 |
+| [iOjXyTFueQg](https://youtu.be/iOjXyTFueQg) | 마케팅학교 AMPM | 개편된 네이버 쇼핑검색광고 세팅 |
+| [uGcHpehFnzc](https://youtu.be/uGcHpehFnzc) | 셀레버리지 | 네이버 애드부스트 광고비 날리지 말고 |
+| [eRCHMWgWgMQ](https://youtu.be/eRCHMWgWgMQ) | TV임쓰 | 애드부스트 vs CPC |
+| [bZp-oxY3B3Y](https://youtu.be/bZp-oxY3B3Y) | 깔깔마케팅 | 스마트스토어 광고가 완전히 바뀌었습니다 |
+| [Yyqe1nCgOsc](https://youtu.be/Yyqe1nCgOsc) | 척척석사의 플랜B | 원부 푸는 법 / 카탈로그 안 묶이는 법 |
+| [9PjRiDI9IWg](https://youtu.be/9PjRiDI9IWg) | 오늘도 쏭 | 임산부 바디필로우 후기 (일자/U/H형 비교) — 고객 관점 |
+| [XYpBVGcV1nM](https://youtu.be/XYpBVGcV1nM) | 호랑이 슈퍼 | 임산부 바디필로우 추천 TOP10 — 경쟁상품 파악 |

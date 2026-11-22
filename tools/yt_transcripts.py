@@ -6,6 +6,7 @@ knowledge/transcripts/<채널>/<업로드일>_<영상ID>.md 로 저장한다.
 
 사용법:
   python3 tools/yt_transcripts.py video <영상ID 또는 URL> [...]
+  python3 tools/yt_transcripts.py video --ids-file ids.txt      # '-'로 시작하는 ID는 이 방식으로
   python3 tools/yt_transcripts.py channel <채널URL> [--limit 50] [--all]
   python3 tools/yt_transcripts.py search "<검색어>" [--limit 10] [--all]
 
@@ -39,7 +40,19 @@ RELEVANT = re.compile(
     re.I,
 )
 
-YTDLP_BASE = ["yt-dlp", "--no-warnings"]
+YTDLP_BASE = ["yt-dlp", "--no-warnings", "--sleep-requests", "1", "--sleep-subtitles", "2"]
+
+
+def _fix_ssl_env() -> None:
+    """python.org 설치판 macOS Python은 CA 인증서가 없어 SSL 오류가 난다 → certifi 번들 사용."""
+    import os
+    if os.environ.get("SSL_CERT_FILE"):
+        return
+    try:
+        import certifi
+    except ImportError:
+        return
+    os.environ["SSL_CERT_FILE"] = certifi.where()
 
 
 def run(cmd: list[str], timeout: int = 180) -> str:
@@ -103,7 +116,7 @@ def fetch_one(vid: str) -> Path | None:
             "--skip-download", "--ignore-no-formats-error", "--write-auto-subs", "--write-subs",
             "--sub-langs", "ko", "--sub-format", "vtt",
             "--print", "%(.{id,title,channel,upload_date,duration,view_count,webpage_url})j",
-            "--no-simulate", "-o", f"{td}/%(id)s", vid,
+            "--no-simulate", "-o", f"{td}/%(id)s", f"https://www.youtube.com/watch?v={vid}",
         ])
         try:
             meta = json.loads(meta_raw.strip().splitlines()[-1])
@@ -160,16 +173,22 @@ def rebuild_index() -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["video", "channel", "search"])
-    ap.add_argument("targets", nargs="+")
+    ap.add_argument("targets", nargs="*")
+    ap.add_argument("--ids-file", help="영상 ID/URL을 한 줄에 하나씩 적은 파일 ('-'로 시작하는 ID 대응)")
     ap.add_argument("--limit", type=int, default=30)
     ap.add_argument("--all", action="store_true", help="제목 필터 없이 전부 받기")
     ap.add_argument("--cookies-from-browser", dest="browser", help="예: chrome, edge, firefox")
     a = ap.parse_args()
+    _fix_ssl_env()
     if a.browser:
         YTDLP_BASE.extend(["--cookies-from-browser", a.browser])
 
     have = existing_ids()
     todo: list[str] = []
+    if a.ids_file:
+        a.targets += [l.strip() for l in Path(a.ids_file).read_text(encoding="utf-8").splitlines() if l.strip()]
+    if not a.targets:
+        ap.error("targets 또는 --ids-file 이 필요합니다")
     if a.mode == "video":
         for t in a.targets:
             m = re.search(r"(?:v=|youtu\.be/|shorts/)([A-Za-z0-9_-]{11})", t)
