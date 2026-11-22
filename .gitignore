@@ -1,0 +1,13 @@
+# secrets — never commit
+.env
+.env.*
+secrets/
+*cookies*.txt
+*.pem
+
+# raw ad reports may contain customer info
+data/raw/
+
+__pycache__/
+*.pyc
+.venv/

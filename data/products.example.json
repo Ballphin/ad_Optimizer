@@ -1,0 +1,25 @@
+{
+  "_comment": "예시 값입니다. 실제 숫자로 바꿔서 data/products.json 으로 저장하세요. fee_rate는 실제 정산 내역으로 확인 필요.",
+  "products": [
+    {
+      "name": "임산부 베개 (예시)",
+      "channel": "naver",
+      "price": 49900,
+      "cogs": 15000,
+      "shipping": 3500,
+      "packaging": 800,
+      "fee_rate": 0.0636,
+      "other_cost": 1000
+    },
+    {
+      "name": "임산부 베개 (예시)",
+      "channel": "coupang",
+      "price": 49900,
+      "cogs": 15000,
+      "shipping": 3500,
+      "packaging": 800,
+      "fee_rate": 0.1188,
+      "other_cost": 1500
+    }
+  ]
+}
