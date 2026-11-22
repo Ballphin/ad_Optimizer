@@ -1,6 +1,7 @@
 # secrets — never commit
 .env
 .env.*
+!.env.example
 secrets/
 *cookies*.txt
 *.pem
@@ -15,3 +16,6 @@ __pycache__/
 # 유튜브 자막 원문은 저작권 문제로 공개 레포에 올리지 않음 (로컬에만 보관, 요약은 knowledge/notes/)
 knowledge/transcripts/*/
 .DS_Store
+
+# 실제 원가·가격 (공개 레포라 커밋 금지)
+data/products.json
