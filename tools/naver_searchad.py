@@ -154,7 +154,11 @@ def cmd_reports(c: Client, days: int, types: list[str]) -> None:
             break
         nxt = []
         for jid, f in pending:
-            job = c.get(f"/stat-reports/{jid}")
+            try:
+                job = c.get(f"/stat-reports/{jid}")
+            except RuntimeError as e:
+                print(f"  ! 조회 실패 {f.name}: {str(e)[:80]}")
+                continue
             st = job.get("status")
             if st == "BUILT":
                 f.write_bytes(c.download(job["downloadUrl"]))
