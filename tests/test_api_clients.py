@@ -47,6 +47,23 @@ class NaverSignTest(unittest.TestCase):
             c.request("POST", "/ncc/keywords")
 
 
+class KeywordLockTest(unittest.TestCase):
+    def test_only_userlock_field_is_sent(self):
+        c = ns.Client("k", "s", "1")
+        calls = []
+        c.get = lambda uri, **p: {"nccKeywordId": "nkw-1", "nccAdgroupId": "grp-1", "bidAmt": 70, "userLock": False}
+        c._send = lambda method, uri, params=None, body=None, raw=False: calls.append((method, uri, params, body)) or body
+        c.set_keyword_lock("nkw-1", True)
+        method, uri, params, body = calls[0]
+        self.assertEqual((method, uri, params), ("PUT", "/ncc/keywords/nkw-1", {"fields": "userLock"}))
+        self.assertEqual(body, {"nccKeywordId": "nkw-1", "nccAdgroupId": "grp-1", "userLock": True})
+
+    def test_rejects_non_keyword_ids(self):
+        c = ns.Client("k", "s", "1")
+        with self.assertRaises(ValueError):
+            c.set_keyword_lock("grp-a001-01-000000001", True)
+
+
 class CoupangSignTest(unittest.TestCase):
     def test_authorization_header(self):
         dt = "261122T120000Z"

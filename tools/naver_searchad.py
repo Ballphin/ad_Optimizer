@@ -67,6 +67,9 @@ class Client:
         method = method.upper()
         if method not in ("GET", "POST") or (method == "POST" and uri not in ALLOWED_POST):
             raise PermissionError(f"조회 전용 클라이언트: {method} {uri} 는 허용되지 않음 (승인 후 별도 구현)")
+        return self._send(method, uri, params, body, raw)
+
+    def _send(self, method: str, uri: str, params: dict | None = None, body: dict | None = None, raw=False):
         url = BASE + uri + ("?" + urllib.parse.urlencode(params, doseq=True) if params else "")
         data = json.dumps(body).encode() if body is not None else None
         req = urllib.request.Request(url, data=data, method=method,
@@ -84,6 +87,15 @@ class Client:
                 msg = e.read().decode(errors="ignore")[:500]
                 msg = re.sub(r"api-key: \S+", "api-key: ***", msg)  # 키 값이 로그에 남지 않게
                 raise RuntimeError(f"HTTP {e.code} {method} {uri}: {msg}") from None
+
+    def set_keyword_lock(self, keyword_id: str, lock: bool) -> dict:
+        """**유일한 쓰기 기능**: 키워드 1개의 ON/OFF(userLock)만 바꾼다. 입찰가·예산 등 다른 필드는 건드리지 않음.
+        사장님 승인 건만 실행하고 docs/changes/ 에 기록할 것."""
+        if not re.fullmatch(r"nkw-[A-Za-z0-9-]+", keyword_id):
+            raise ValueError(f"키워드 ID 형식이 아님: {keyword_id}")
+        cur = self.get(f"/ncc/keywords/{keyword_id}")
+        body = {"nccKeywordId": keyword_id, "nccAdgroupId": cur["nccAdgroupId"], "userLock": bool(lock)}
+        return self._send("PUT", f"/ncc/keywords/{keyword_id}", params={"fields": "userLock"}, body=body)
 
     def get(self, uri, **params):
         return self.request("GET", uri, params=params or None)
