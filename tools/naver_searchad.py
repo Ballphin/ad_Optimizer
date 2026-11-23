@@ -33,7 +33,7 @@ import envfile  # noqa: E402
 
 BASE = "https://api.searchad.naver.com"
 OUT = envfile.ROOT / "data" / "raw" / "naver"
-ALLOWED_POST = ("/stat-reports",)  # 리포트 '생성 요청'만 허용 (광고 설정 변경 아님)
+ALLOWED_POST = ("/stat-reports", "/estimate/average-position-bid/keyword")  # 리포트 생성·입찰가 추정만 (광고 설정 변경 아님)
 REPORT_TYPES = ["AD", "AD_CONVERSION", "SHOPPINGKEYWORD_DETAIL", "SHOPPINGKEYWORD_CONVERSION_DETAIL"]
 
 
