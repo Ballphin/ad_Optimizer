@@ -33,6 +33,7 @@ import envfile  # noqa: E402
 
 BASE = "https://api.searchad.naver.com"
 OUT = envfile.ROOT / "data" / "raw" / "naver"
+BID_CAP = 1500
 ALLOWED_POST = ("/stat-reports", "/estimate/average-position-bid/keyword")  # 리포트 생성·입찰가 추정만 (광고 설정 변경 아님)
 REPORT_TYPES = ["AD", "AD_CONVERSION", "SHOPPINGKEYWORD_DETAIL", "SHOPPINGKEYWORD_CONVERSION_DETAIL"]
 
@@ -96,6 +97,30 @@ class Client:
         cur = self.get(f"/ncc/keywords/{keyword_id}")
         body = {"nccKeywordId": keyword_id, "nccAdgroupId": cur["nccAdgroupId"], "userLock": bool(lock)}
         return self._send("PUT", f"/ncc/keywords/{keyword_id}", params={"fields": "userLock"}, body=body)
+
+    @staticmethod
+    def _check_bid(bid: int) -> None:
+        # 안전 레일: 네이버 최소 70원, 10원 단위, 이 도구의 상한 1,500원(손익분기 CPC 1,270원 + 여유)
+        if not (70 <= bid <= BID_CAP and bid % 10 == 0):
+            raise ValueError(f"입찰가 {bid}원은 허용 범위(70~{BID_CAP}원, 10원 단위) 밖")
+
+    def set_keyword_bid(self, keyword_id: str, bid: int) -> dict:
+        """키워드 입찰가만 바꾼다(그룹 입찰가 사용 해제). 사장님 승인 건만 실행하고 docs/changes/ 에 기록."""
+        if not re.fullmatch(r"nkw-[A-Za-z0-9-]+", keyword_id):
+            raise ValueError(f"키워드 ID 형식이 아님: {keyword_id}")
+        self._check_bid(bid)
+        cur = self.get(f"/ncc/keywords/{keyword_id}")
+        body = {"nccKeywordId": keyword_id, "nccAdgroupId": cur["nccAdgroupId"], "bidAmt": bid,
+                "useGroupBidAmt": False}
+        return self._send("PUT", f"/ncc/keywords/{keyword_id}", params={"fields": "bidAmt"}, body=body)
+
+    def set_adgroup_bid(self, adgroup_id: str, bid: int) -> dict:
+        """광고그룹 기본 입찰가만 바꾼다(다른 필드는 현재 값 그대로 보냄). 승인 건만 실행."""
+        if not re.fullmatch(r"grp-[A-Za-z0-9-]+", adgroup_id):
+            raise ValueError(f"광고그룹 ID 형식이 아님: {adgroup_id}")
+        self._check_bid(bid)
+        cur = self.get(f"/ncc/adgroups/{adgroup_id}")
+        return self._send("PUT", f"/ncc/adgroups/{adgroup_id}", params={"fields": "bidAmt"}, body={**cur, "bidAmt": bid})
 
     def get(self, uri, **params):
         return self.request("GET", uri, params=params or None)
