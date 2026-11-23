@@ -12,6 +12,7 @@
   - API HUB 공식 검색 API 목록에 **쇼핑 검색(shop.json)이 없음** → HUB 키로는 이 도구가 동작하지 않는다.
   - 2026-07 이전에 developers.naver.com 에서 만든 기존 앱 키만 openapi.naver.com/v1/search/shop.json 호출 가능
     (제3자 정리 기준 2027-06-30까지 — 공식 확인 필요).
+  - 대신 쇼핑 수요 추이는 tools/naver_trend.py (API HUB 쇼핑인사이트)로 본다.
   - 출처: https://api.ncloud-docs.com/docs/naver-api-hub-overview , https://guide.ncloud-docs.com/docs/apihub-migration
 """
 from __future__ import annotations
