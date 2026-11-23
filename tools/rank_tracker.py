@@ -8,7 +8,11 @@
   python3 tools/rank_tracker.py naver --kw 수유쿠션 --kw 옆잠베개
 
 필요: .env 의 NAVER_OPENAPI_CLIENT_ID / NAVER_OPENAPI_CLIENT_SECRET
-  (developers.naver.com → Application 등록 → 사용 API '검색' 선택)
+  ⚠️ 2026년 네이버 오픈API가 네이버 클라우드 'NAVER API HUB'로 이관됨.
+  - API HUB 공식 검색 API 목록에 **쇼핑 검색(shop.json)이 없음** → HUB 키로는 이 도구가 동작하지 않는다.
+  - 2026-07 이전에 developers.naver.com 에서 만든 기존 앱 키만 openapi.naver.com/v1/search/shop.json 호출 가능
+    (제3자 정리 기준 2027-06-30까지 — 공식 확인 필요).
+  - 출처: https://api.ncloud-docs.com/docs/naver-api-hub-overview , https://guide.ncloud-docs.com/docs/apihub-migration
 """
 from __future__ import annotations
 
