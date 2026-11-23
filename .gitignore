@@ -22,3 +22,6 @@ data/products.json
 
 # 실제 광고비·매출이 들어간 진단 문서 (공개 레포라 로컬 전용)
 docs/diagnosis-*.md
+
+# 실제 금액이 들어간 쿠팡 변경 기록 (로컬 전용)
+docs/changes/*_coupang_*.md
