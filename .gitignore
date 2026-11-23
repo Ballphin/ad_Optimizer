@@ -25,3 +25,5 @@ docs/diagnosis-*.md
 
 # 실제 금액이 들어간 쿠팡 변경 기록 (로컬 전용)
 docs/changes/*_coupang_*.md
+docs/strategy-*.md
+data/raw/
